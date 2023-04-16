@@ -1,0 +1,15 @@
+{
+    "text" :
+    [
+        {"timing" : "08;00:00", "content" : "coucou"}
+    ],
+    "color" :
+    [
+        {"timing" : "09:00:00", "exp" : 9}
+    ],
+    "cut" :
+    [
+        {"from" : "10:00:00", "to" : "11:00:00", "reason" : "Pipi"}
+    ],
+    "fading" : 2
+}

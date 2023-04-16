@@ -1,0 +1,59 @@
+{
+    "output" :
+    {
+        "image" :
+        {
+            "width" : 1920,
+            "height" : 1080,
+            "src" : "internal:output"
+        }
+    },
+    "objects" :
+    [
+        {
+            "destination" :
+            {
+                "width" : "100%",
+                "height" : "100%",
+                "centerx" : "50%",
+                "centery" : "50%",
+                "scaling" : "100%"
+            },
+            "image" :
+            {
+                "src" : "internal:gopro"
+            }
+        },
+        {
+            "destination" :
+            {
+                "centerx" : -200,
+                "centery" : -200,
+                "scaling" : "100%"
+            },
+            "mask" :
+            {
+                "src" : "shape:circle"
+            },
+            "image" :
+            {
+                "src" : "internal:map:15",
+                "width" : 300,
+                "height" : 300    
+            }
+        },
+        {
+            "destination" :
+            {
+                "centerx" : "50%",
+                "centery" : -40
+            },
+            "image" :
+            {
+                "src" : "shape:rectangle",
+                "width" : "50%",
+                "height" : 70
+            }
+        }
+    ]
+}

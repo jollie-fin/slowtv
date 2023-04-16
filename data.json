@@ -1,0 +1,16 @@
+{
+    "layout" : "layout.json",
+    "osm" :
+    {
+        "xml" : "../openstreetmap-carto/osm.xml",
+        "cache" : "../cache",
+        "zoom" : 15
+    },
+    "video" :
+    {
+        "location" : "/home/gopro",
+        "id" : 34
+    },
+    "evenement" : "evenement.json",
+    "height_map" : "elevation-data/eu_dem_v11_E50N40.TIF"
+}

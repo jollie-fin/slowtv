@@ -1,0 +1,45 @@
+CPP =   g++-10
+TARGET      =   transform
+BUILD       =   build/src
+SOURCES     =   src
+INCLUDE     =   include
+
+CPPFLAGS  =  -g -Wall -O2 -I ./$(INCLUDE) `pkg-config --cflags gdal` `pkg-config --cflags opencv4` -std=c++20 -Wall -Wextra -Werror -DMAPNIK_DEFAULT_FONT_PATH=`mapnik-config --fonts` -DMAPNIK_DEFAULT_INPUT_PATH=`mapnik-config --input-plugins` -O2
+LDFLAGS  =  `pkg-config --libs gdal` `pkg-config --libs opencv4` -std=c++20 -O2 `mapnik-config --libs` `mapnik-config --dep-libs` -pthread
+OBJECT_FILES = build/src/transform.o build/src/image_generator.o build/src/video.o build/src/full_datatype.o build/src/elevation.o build/src/catenate_video.o build/src/collection_video.o
+SOURCE_FILES = $(wildcard src/*.cpp)
+OBJECT_FILES = $(patsubst $(SOURCES)/%.cpp,$(BUILD)/%.o,$(SOURCE_FILES))
+depend:
+	makedepend -Y$(INCLUDE) -p$(BUILD)/ $(SOURCE_FILES) 2>/dev/null
+
+clean:
+	rm -f $(BUILD)/*
+	rm -f $(TARGET)
+
+$(BUILD)/%.o : $(SOURCES)/%.cpp
+	$(CPP) -c -o $@ $< $(CPPFLAGS)
+
+$(TARGET) : $(OBJECT_FILES)
+	$(CPP) $^ -o $@ $(LDFLAGS)
+
+# DO NOT DELETE
+
+build/src/src/telemetry.o: include/map_generator.h include/transform.hpp
+build/src/src/telemetry.o: include/utilities.h include/constants.h
+build/src/src/telemetry.o: include/gpmf_reader.h include/token_type.h
+build/src/src/telemetry.o: include/collection_video.h include/elevation.h
+build/src/src/telemetry.o: include/configuration.h src/telemetry.h
+build/src/src/telemetry.o: include/catenate_video.h
+build/src/src/elevation.o: include/constants.h include/elevation.h
+build/src/src/configuration.o: include/configuration.h
+build/src/src/collection_video.o: include/collection_video.h
+build/src/src/image_generator.o: include/constants.h include/utilities.h
+build/src/src/image_generator.o: include/map_generator.h
+build/src/src/catenate_video.o: include/configuration.h
+build/src/src/catenate_video.o: include/catenate_video.h
+build/src/src/video.o: include/elevation.h include/map_generator.h
+build/src/src/video.o: include/catenate_video.h include/configuration.h
+build/src/src/video.o: src/telemetry.h include/layout.h
+build/src/src/layout.o: include/layout.h
+build/src/src/gpmf_reader.o: include/gpmf_reader.h include/token_type.h
+build/src/src/gpmf_reader.o: include/utilities.h

@@ -1,3 +1,7 @@
+transform
+build
+elevation-data
+
 # Prerequisites
 *.d
 
